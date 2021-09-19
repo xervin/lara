@@ -2074,7 +2074,7 @@ var request = function request(route, body) {
     credentials: 'same-origin',
     body: body
   };
-  return fetch("".concat(baseUrl).concat(route), options);
+  return fetch(route, options);
 };
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -2095,7 +2095,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       var qInput = document.getElementById('quantity');
       var quantity = qInput.value;
       var productId = qInput.dataset.id;
-      var add = request("cart/add/".concat(productId), JSON.stringify({
+      var add = request("/cart/add/".concat(productId), JSON.stringify({
         quantity: quantity
       }));
       add.then(function (response) {
@@ -2119,7 +2119,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       deleteButton.addEventListener('click', function (e) {
         var productId = e.currentTarget.querySelector('input').value;
         var row = e.currentTarget.closest('.cart__row');
-        var del = request("cart/delete/".concat(productId));
+        var del = request("/cart/delete/".concat(productId));
         del.then(function (response) {
           if (response.status !== 200) {
             return Promise.reject();

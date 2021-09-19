@@ -13,7 +13,7 @@ let request = (route, body) => {
         body: body
     }
 
-    return fetch(`${baseUrl}${route}`, options);
+    return fetch(route, options);
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             let quantity = qInput.value;
             let productId = qInput.dataset.id;
 
-            let add = request(`cart/add/${productId}`, JSON.stringify({
+            let add = request(`/cart/add/${productId}`, JSON.stringify({
                     quantity: quantity,
                 })
             )
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 let productId = e.currentTarget.querySelector('input').value;
                 let row = e.currentTarget.closest('.cart__row');
 
-                let del = request(`cart/delete/${productId}`);
+                let del = request(`/cart/delete/${productId}`);
                 del
                     .then(response => {
                         if (response.status !== 200) {
