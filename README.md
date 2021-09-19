@@ -10,7 +10,7 @@ docker-compose build app
 
 docker-compose up -d
 
-# Command
+## Command
 
 npm run watch
 
